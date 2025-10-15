@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureCoders Bootcamp 2025 | Sreemongol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2E8B57;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2E8B57;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(46, 139, 87, 0.8), rgba(30, 144, 255, 0.6)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%234169E1" width="1200" height="800"/><circle fill="%232E8B57" cx="200" cy="200" r="100" opacity="0.3"/><circle fill="%2332CD32" cx="800" cy="300" r="150" opacity="0.2"/><circle fill="%2300CED1" cx="600" cy="600" r="120" opacity="0.3"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .event-details {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-item i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #32CD32;
+        }
+
+        .detail-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #32CD32, #2E8B57);
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 139, 87, 0.4);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2E8B57;
+            margin-bottom: 3rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8fffe;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .fee-highlight {
+            background: linear-gradient(135deg, #2E8B57, #32CD32);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(46, 139, 87, 0.2);
+        }
+
+        .fee-highlight h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .fee-highlight p {
+            opacity: 0.9;
+        }
+
+        /* Speakers Section */
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .speaker-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .speaker-image {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #2E8B57, #1E90FF);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .speaker-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .speaker-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Schedule Section */
+        .schedule {
+            background: #f8fffe;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .day-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-header {
+            background: linear-gradient(135deg, #2E8B57, #32CD32);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .day-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .session-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .session-item:last-child {
+            border-bottom: none;
+        }
+
+        .session-item h4 {
+            color: #2E8B57;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Venue Section */
+        .venue-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .venue-info h3 {
+            color: #2E8B57;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .venue-info p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .map-container {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2E8B57, #1E90FF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Registration Section */
+        .registration {
+            background: #f8fffe;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #2E8B57;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #2E8B57, #32CD32);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 139, 87, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #2E8B57;
+            color: white;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #32CD32;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .event-details {
+                gap: 1.5rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .venue-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .event-details {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">FutureCoders</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#speakers">Speakers</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#venue">Venue</a></li>
+                <li><a href="#registration">Register</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>FutureCoders Bootcamp 2025</h1>
+            <p class="subtitle">Tech Talk & Coding Bootcamp in the heart of Sreemongol</p>
+
+            <div class="event-details">
+                <div class="detail-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>23rd–24th October 2025</h3>
+                    <p>Two Days of Innovation</p>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Oronner Din Ratri Resort</h3>
+                    <p>Sreemongol, Bangladesh</p>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-users"></i>
+                    <h3>Tech Community</h3>
+                    <p>Developers & Students</p>
+                </div>
+            </div>
+
+            <a href="#registration" class="cta-button">Register Now</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">About the Event</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>FutureCoders Bootcamp is a two-day immersive tech event combining expert-led talks, hands-on
+                        coding sessions, and a collaborative environment surrounded by nature.</p>
+
+                    <p>Join us in the scenic hills of Sreemongol for an unforgettable experience where technology meets
+                        nature. Network with fellow developers, learn from industry experts, and enhance your coding
+                        skills in one of Bangladesh's most beautiful locations.</p>
+
+                    <p>Whether you're a student looking to kickstart your tech career or an experienced developer
+                        wanting to expand your knowledge, this bootcamp offers something for everyone.</p>
+                </div>
+                <div class="fee-highlight">
+                    <h3>3,500 BDT</h3>
+                    <p>Participation Fee</p>
+                    <p style="font-size: 0.9rem; margin-top: 1rem;">Includes meals, accommodation, and all workshop
+                        materials</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section id="speakers" class="section speakers">
+        <div class="container">
+            <h2 class="section-title">Keynote Speakers</h2>
+            <p class="section-subtitle">Learn from industry experts and thought leaders</p>
+
+            <div class="speakers-grid">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Dr. Sarah Rahman</h3>
+                    <p>AI Researcher, DU CSE<br>Machine Learning Expert</p>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Ahmed Hassan</h3>
+                    <p>Software Engineer<br>Google Developer Group</p>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Fatima Khan</h3>
+                    <p>Full Stack Developer<br>Tech Entrepreneur</p>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Mohammad Ali</h3>
+                    <p>DevOps Engineer<br>Cloud Architecture Specialist</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="section schedule">
+        <div class="container">
+            <h2 class="section-title">Sessions & Schedule</h2>
+            <p class="section-subtitle">Two days packed with learning and networking opportunities</p>
+
+            <div class="schedule-grid">
+                <div class="day-card">
+                    <div class="day-header">
+                        <h3>Day 1 - October 23rd</h3>
+                        <p>Tech Talks & Networking</p>
+                    </div>
+
+                    <div class="session-item">
+                        <h4>9:00 AM - Registration & Breakfast</h4>
+                        <p>Welcome coffee and networking</p>
+                    </div>
+
+                    <div class="session-item">
+                        <h4>10:00 AM - Opening Ceremony</h4>
+                        <p>Event introduction and keynote</p>
+                    </div>
+
+                    <div class="session-item">
+                        <h4>11:00 AM - AI & Machine Learning</h4>
+                        <p>Future of AI in Bangladesh</p>
+                    </div>
+
+                    <div class="session-item">
+                        <h4>2:00 PM - Coding Challenges</h4>
+                        <p>Interactive problem-solving session</p>
+                    </div>
+
+                    <div class="session-item">
+                        <h4>4:00 PM - Networking Session</h4>
+                        <p>Connect with peers and mentors</p>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-header">
+                        <h3>Day 2 - October 24th</h3>
+                        <p>Workshops & Projects</p>
+                    </div>
+
+                    <div class="session-item">
+                        <h4>9:00 AM - AI Workshop</h4>
+                        <p>Hands-on machine learning session</p>
+                    </div>
+
+                    <div class="session-item">
+                        <h4>11:00 AM - Team Formation</h4>
+                        <p>Build your project team</p>
+                    </div>
+
+                    <div class="session-item">
+                        <h4>12:00 PM - Team Projects</h4>
+                        <p>Collaborative coding session</p>
+                    </div>
+
+                    <div class="session-item">
+                        <h4>4:00 PM - Project Presentations</h4>
+                        <p>Showcase your creations</p>
+                    </div>
+
+                    <div class="session-item">
+                        <h4>5:30 PM - Closing Ceremony</h4>
+                        <p>Awards and networking</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section id="venue" class="section venue">
+        <div class="container">
+            <h2 class="section-title">Venue</h2>
+            <div class="venue-content">
+                <div class="venue-info">
+                    <h3>Oronner Din Ratri Resort</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Sreemongol, Moulvibazar, Bangladesh</p>
+                    <p>Experience the perfect blend of technology and nature at this beautiful resort nestled in the tea
+                        gardens of Sreemongol. The venue offers modern facilities with stunning natural surroundings.
+                    </p>
+
+                    <p><strong>Facilities:</strong></p>
+                    <ul style="margin-left: 1rem;">
+                        <li>High-speed WiFi</li>
+                        <li>Conference halls with projectors</li>
+                        <li>Comfortable accommodation</li>
+                        <li>Delicious local cuisine</li>
+                        <li>Beautiful tea garden views</li>
+                    </ul>
+                </div>
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <div style="text-align: center;">
+                            <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <p>Interactive Map</p>
+                            <p style="font-size: 0.9rem;">Oronner Din Ratri Resort<br>Sreemongol, Bangladesh</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="registration" class="section registration">
+        <div class="container">
+            <h2 class="section-title">Register Now</h2>
+            <p class="section-subtitle">Join us for this amazing tech adventure in Sreemongol</p>
+
+            <div class="form-container">
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="university">University/Organization *</label>
+                        <input type="text" id="university" name="university" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <button type="submit" class="submit-button">Submit Registration</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2025 FutureCoders Bootcamp | Organized in Sreemongol, Bangladesh</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animation for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+
+            // Simple validation
+            if (!name || !formData.get('email') || !formData.get('phone') || !formData.get('university')) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Success message
+            alert(`Thank you for registering, ${name}! We'll contact you soon with payment and confirmation details.`);
+
+            // Reset form
+            this.reset();
+        });
+
+        // Mobile menu toggle (if needed in future)
+        document.querySelector('.mobile-menu').addEventListener('click', function () {
+            // This can be enhanced for a mobile menu dropdown
+            console.log('Mobile menu clicked');
+        });
+
+        // Add some interactive elements
+        document.querySelectorAll('.speaker-card, .day-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-10px)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Initialize animations on page load
+        window.addEventListener('load', () => {
+            // Add any additional initialization here
+            console.log('FutureCoders Bootcamp website loaded successfully!');
+        });
+    </script>
+</body>
+
+</html>
