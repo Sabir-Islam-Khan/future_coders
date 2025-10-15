@@ -426,17 +426,24 @@
         .speaker-image {
             width: 120px;
             height: 120px;
-            background: linear-gradient(135deg, #2E8B57, #32CD32, #1E90FF);
             border-radius: 50%;
             margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
             box-shadow: 0 8px 25px rgba(46, 139, 87, 0.3);
             position: relative;
             overflow: hidden;
+            border: 3px solid rgba(50, 205, 50, 0.3);
+        }
+
+        .speaker-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .speaker-card:hover .speaker-image img {
+            transform: scale(1.1);
         }
 
         .speaker-image::before {
@@ -997,15 +1004,17 @@
             <div class="speakers-grid">
                 <div class="speaker-card">
                     <div class="speaker-image">
-                        <i class="fas fa-user"></i>
+                        <img src="https://media.licdn.com/dms/image/v2/D5603AQF_oysmUAnpnw/profile-displayphoto-shrink_800_800/B56ZY_qDvGHQAc-/0/1744824712926?e=1763596800&v=beta&t=sA3SDSdG29Hy17mmjB_-6c-aaAT1kSXV8Zdjm5ra0bk"
+                            alt="Dr. Sarah Rahman" loading="lazy">
                     </div>
-                    <h3>Dr. Sarah Rahman</h3>
+                    <h3>Dr. Faruk Khan</h3>
                     <p>AI Researcher, DU CSE<br>Machine Learning Expert</p>
                 </div>
 
                 <div class="speaker-card">
                     <div class="speaker-image">
-                        <i class="fas fa-user"></i>
+                        <img src="https://media.licdn.com/dms/image/v2/D5603AQHBbgZGSqWohQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1680238727179?e=1763596800&v=beta&t=_g0NZi5oSRXO2go8Qt3qBjpC9m42tZRu1cZSFRWSJRs"
+                            alt="Ahmed Hassan" loading="lazy">
                     </div>
                     <h3>Ahmed Hassan</h3>
                     <p>Software Engineer<br>Google Developer Group</p>
@@ -1013,7 +1022,8 @@
 
                 <div class="speaker-card">
                     <div class="speaker-image">
-                        <i class="fas fa-user"></i>
+                        <img src="https://media.licdn.com/dms/image/v2/D5603AQHauBtdrAVC6A/profile-displayphoto-crop_800_800/B56ZfMR27UHQAI-/0/1751478923667?e=1763596800&v=beta&t=rAu43CzZxSnjZrBXcfe5tqDXidBnrC2yDSoTyarVU7E"
+                            alt="Fatima Khan" loading="lazy">
                     </div>
                     <h3>Fatima Khan</h3>
                     <p>Full Stack Developer<br>Tech Entrepreneur</p>
@@ -1021,7 +1031,8 @@
 
                 <div class="speaker-card">
                     <div class="speaker-image">
-                        <i class="fas fa-user"></i>
+                        <img src="https://media.licdn.com/dms/image/v2/D5603AQFNYvuFoMMfHg/profile-displayphoto-crop_800_800/B56Zf9ClPzG0AI-/0/1752297002435?e=1763596800&v=beta&t=TjpUVqeLmLhSLGZNapsuvZC7WXbPRWPefBousiklfMc"
+                            alt="Mohammad Ali" loading="lazy">
                     </div>
                     <h3>Mohammad Ali</h3>
                     <p>DevOps Engineer<br>Cloud Architecture Specialist</p>
